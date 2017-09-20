@@ -1,4 +1,5 @@
 FROM sonarqube:alpine
 
 RUN wget -P /opt/sonarqube/extensions/plugins/ https://github.com/SonarOpenCommunity/sonar-cxx/releases/download/cxx-0.9.7/sonar-cxx-plugin-0.9.7.jar && \
-    wget -P /opt/sonarqube/extensions/plugins/ https://github.com/Pablissimo/SonarTsPlugin/releases/download/v1.1.0/sonar-typescript-plugin-1.1.0.jar
+    wget -P /opt/sonarqube/extensions/plugins/ https://github.com/Pablissimo/SonarTsPlugin/releases/download/v1.1.0/sonar-typescript-plugin-1.1.0.jar && \
+    wget -P /opt/sonarqube/extensions/plugins/ https://oss.sonatype.org/content/groups/public/com/github/acwatson/sonar-karma-test-report-plugin/1.0.0.3/sonar-karma-test-report-plugin-1.0.0.3.jar
