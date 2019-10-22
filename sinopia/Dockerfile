@@ -2,7 +2,7 @@ FROM node:alpine
 
 WORKDIR /
 
-ADD config.yaml /sinopia/config.yaml
+ADD techinline-sinopia-config.yaml /sinopia/config.yaml
 
 RUN npm install -g sinopia \
     && npm cache verify \
