@@ -3,15 +3,16 @@ FROM    gitlab/gitlab-runner:v11.11.4
 ENV     RUNNER_ROOT=/home/titan/gitlab \
         CI_SERVER_URL=https://gitlab.setme.it \
         RUNNER_EXECUTOR=shell \
-        RUNNER_TAG_LIST=angular7 \
+        RUNNER_TAG_LIST=angular8 \
         REGISTER_LOCKED=false \
         REGISTER_RUN_UNTAGGED=false \
-        RUNNER_NAME=ANGULAR7 \
+        RUNNER_NAME=ANGULAR8 \
         SONAR_SCANNER_PATH="/sonar-scanner/sonar-scanner-3.2.0.1227-linux/bin"
 
 RUN     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
         apt-get install -y nodejs git unzip libfontconfig jq bzip2 && \
-        npm i -g @angular/cli@7.0.1 pug-cli@1.0.0-alpha6 npm-cli-login && \
+        npm i -g npm typescript @angular/cli pug-cli
+        npm i -g @angular/cli@8.3.23 pug-cli@1.0.0-alpha6 npm-cli-login && \
         mkdir -p -m 777 /sonar-scanner && \
         wget -O /sonar-scanner/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip && \
         cd /sonar-scanner && \
