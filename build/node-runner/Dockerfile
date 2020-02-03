@@ -11,7 +11,6 @@ ENV     RUNNER_ROOT=/home/titan/gitlab \
 
 RUN     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
         apt-get install -y nodejs git unzip libfontconfig jq bzip2 && \
-        npm i -g npm typescript @angular/cli pug-cli
         npm i -g @angular/cli@8.3.23 pug-cli@1.0.0-alpha6 npm-cli-login && \
         mkdir -p -m 777 /sonar-scanner && \
         wget -O /sonar-scanner/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip && \
