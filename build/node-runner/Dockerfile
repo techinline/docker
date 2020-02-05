@@ -9,7 +9,7 @@ ENV     RUNNER_ROOT=/home/titan/gitlab \
         RUNNER_NAME=ANGULAR8 \
         SONAR_SCANNER_PATH="/sonar-scanner/sonar-scanner-3.2.0.1227-linux/bin"
 
-RUN     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+RUN     curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
         apt-get install -y nodejs git unzip libfontconfig jq bzip2 && \
         npm i -g @angular/cli@8.3.23 pug-cli@1.0.0-alpha6 npm-cli-login && \
         mkdir -p -m 777 /sonar-scanner && \
