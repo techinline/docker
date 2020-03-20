@@ -14,19 +14,32 @@ ENV RUNNER_ROOT=/home/titan/gitlab \
 	LANG=en_US.UTF-8 \
 	NUGET_XMLDOC_MODE=skip
 
-RUN apk add --no-cache icu-libs \
+RUN apk add --no-cache \
 	ca-certificates \
+	less \
+	ncurses-terminfo-base \
 	krb5-libs \
 	libgcc \
 	libintl \
 	libssl1.1 \
 	libstdc++ \
-	zlib && \
+	tzdata \
+	userspace-rcu \
+	zlib \
+	icu-libs \
+	curl \
+	&& \
+	apk -X http://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
+	lttng-ust && \
 	wget -nv -O dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/3.1.200/dotnet-sdk-3.1.200-linux-musl-x64.tar.gz && \
-	mkdir -p /usr/share/dotnet && \
+	wget -nv -O powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.0.0/powershell-7.0.0-linux-alpine-x64.tar.gz && \
+	mkdir -p /usr/share/dotnet /opt/microsoft/powershell/7 && \
 	tar -C /usr/share/dotnet -oxzf dotnet.tar.gz && \
+	tar -C /opt/microsoft/powershell/7 -oxzf powershell.tar.gz && \
+	chmod +x /opt/microsoft/powershell/7/pwsh && \
 	ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet && \
-	rm dotnet.tar.gz && \
+	ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh && \
+	rm dotnet.tar.gz powershell.tar.gz && \
 	git config --global http.sslVerify "false" && \
 	dotnet help
 
