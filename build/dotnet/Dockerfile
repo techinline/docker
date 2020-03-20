@@ -21,23 +21,15 @@ RUN apk add --no-cache icu-libs \
 	libintl \
 	libssl1.1 \
 	libstdc++ \
-	zlib
-RUN wget -nv -O dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/3.1.200/dotnet-sdk-3.1.200-linux-musl-x64.tar.gz && \
+	zlib && \
+	wget -nv -O dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/3.1.200/dotnet-sdk-3.1.200-linux-musl-x64.tar.gz && \
 	mkdir -p /usr/share/dotnet && \
 	tar -C /usr/share/dotnet -oxzf dotnet.tar.gz && \
 	ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet && \
 	rm dotnet.tar.gz && \
 	git config --global http.sslVerify "false" && \
-	dotnet help && \
-	echo '\n\
-#!/bin/bash\n\
-\n\
-file=/registered\n\
-\n\
-if [ ! -f $file ]; then\n\
-    touch $file\n\
-    gitlab-runner register -n\n\
-fi\n\
-\n\
-/usr/bin/dumb-init /entrypoint run --user=gitlab-runner --working-directory=/home/gitlab-runner' > /runner.sh
+	dotnet help
+
+ADD runner.sh /
+
 ENTRYPOINT [ "sh", "/runner.sh" ]
