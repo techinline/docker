@@ -2,7 +2,7 @@ FROM gitlab/gitlab-runner:alpine-v12.7.1
 
 ENV RUNNER_ROOT=/home/titan/gitlab \
 	CI_SERVER_URL=https://gitlab.setme.it \
-	RUNNER_EXECUTOR=shell \
+	RUNNER_EXECUTOR=powershell \
 	RUNNER_TAG_LIST=netcore31 \
 	REGISTER_LOCKED=false \
 	REGISTER_RUN_UNTAGGED=false \
@@ -29,7 +29,7 @@ RUN apk add --no-cache \
 	icu-libs \
 	curl \
 	&& \
-	apk -X http://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
+	apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
 	lttng-ust && \
 	wget -nv -O dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/3.1.200/dotnet-sdk-3.1.200-linux-musl-x64.tar.gz && \
 	wget -nv -O powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.0.0/powershell-7.0.0-linux-alpine-x64.tar.gz && \
