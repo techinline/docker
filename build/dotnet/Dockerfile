@@ -1,12 +1,12 @@
 FROM gitlab/gitlab-runner:alpine-v12.7.1
 
-ENV RUNNER_ROOT=/home/titan/gitlab \
+ENV RUNNER_ROOT=/home/gitlab-runner \
 	CI_SERVER_URL=https://gitlab.setme.it \
-	RUNNER_EXECUTOR=powershell \
-	RUNNER_TAG_LIST=netcore31 \
+	RUNNER_EXECUTOR=shell \
+	RUNNER_TAG_LIST=netcore3.1 \
 	REGISTER_LOCKED=false \
 	REGISTER_RUN_UNTAGGED=false \
-	RUNNER_NAME=net31 \
+	RUNNER_NAME=netcore \
 	ASPNETCORE_URLS= \
 	DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
 	DOTNET_USE_POLLING_FILE_WATCHER=true \
